@@ -11,17 +11,16 @@ public class Node {
 	private String id;
 	private double x;
 	private double y;
-	private String description;
+	private String description = "";
 	private final ArrayList<Node> connectedNodes;
 	private final String geoPunktUUID;
 	private final String geoKnotenUUID;
 	private final String topKnotenUUID;
 
-	public Node(final String id, final double x, final double y, final String description) {
+	public Node(final String id, final double x, final double y) {
 		this.id = id;
 		this.x = x;
 		this.y = y;
-		this.description = description;
 		this.connectedNodes = new ArrayList<>();
 		this.geoPunktUUID = Generator.getRandomUUID();
 		this.geoKnotenUUID = Generator.getRandomUUID();

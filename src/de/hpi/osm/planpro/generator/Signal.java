@@ -20,9 +20,9 @@ public class Signal {
 	private String controlMemberUUID;
 	private String function;
 	private String kind;
+	private double sideDistance = 3.950;
 
-	public Signal(final Route route, final Edge edge, final double distanceEdge, final String effectiveDirection,
-			final String function, final String kind) {
+	public Signal(final Route route, final Edge edge, final double distanceEdge, final String effectiveDirection) {
 		this.signalUUID = Generator.getRandomUUID();
 		this.route = route;
 		this.edge = edge;
@@ -31,8 +31,8 @@ public class Signal {
 		this.classificationNumber = "60";
 		this.elementName = this.getRandomElementName();
 		this.controlMemberUUID = Generator.getRandomUUID();
-		this.function = function;
-		this.kind = kind;
+		this.function = supportedFunctions.get(0);
+		this.kind = supportedKinds.get(0);
 	}
 
 	public String getSignalUUID() {
@@ -91,9 +91,13 @@ public class Signal {
 
 	public double getSideDistance() {
 		if (this.getEffectiveDirection().toLowerCase().equals("in")) {
-			return 3.950;
+			return this.sideDistance;
 		}
-		return -3.950;
+		return this.sideDistance * -1;
+	}
+
+	public void setSideDistance(final double sideDistance) {
+		this.sideDistance = Math.abs(sideDistance);
 	}
 
 	public String getClassificationNumber() {
